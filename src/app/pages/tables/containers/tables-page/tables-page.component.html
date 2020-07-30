@@ -1,0 +1,12 @@
+<app-layout>
+  <mat-toolbar class="page-header" role="heading">
+    <h2 style="color: rgba(0, 0, 0, 0.568);">Orders</h2>
+  </mat-toolbar>
+
+  <div class="tables-wrapper">
+    <app-employee-table [employeeTableData]="employeeTableData$ | async"></app-employee-table>
+    <app-material-table [materialTableDate]="materialTableData$ | async"></app-material-table>
+  </div>
+
+  <app-footer></app-footer>
+</app-layout>

@@ -1,0 +1,113 @@
+<app-layout>
+    <mat-toolbar class="page-header" role="heading">
+        <h2 style="color: rgba(0, 0, 0, 0.568);">Add New Product</h2>
+        <button mat-flat-button [routerLink]="'addcategory'" routerLinkActive="active">Add New
+            category</button>
+    </mat-toolbar>
+    <div class="tables_wrapper">
+        <mat-card class="product-table-wrapper">
+            <form #newProduct='ngForm' (ngSubmit)='addProduct(newProduct)'>
+                <mat-form-field appearance="outline">
+                    <mat-label>Product Title</mat-label>
+                    <input matInput placeholder="Ex. Choclate Truffle" id="title" ngModel #title="ngModel" name="title"
+                        required>
+                    <mat-error *ngIf="title.hasError('required')">Please enter Product Title</mat-error>
+                </mat-form-field>
+
+                <mat-form-field appearance="outline">
+                    <mat-label>Category</mat-label>
+                    <mat-select ngModel #category="ngModel" name="category" required>
+                        <mat-option value="cakes">Cakes</mat-option>
+                    </mat-select>
+                    <mat-error *ngIf="category.hasError('required')">Please select Category</mat-error>
+                </mat-form-field>
+                <button mat-icon-button matTooltip="Add New Category">
+                    <mat-icon>add</mat-icon>
+                </button>
+
+                <mat-form-field appearance="outline">
+                    <mat-label>Sub Category</mat-label>
+                    <mat-select ngModel #subcategory="ngModel" name="subcategory">
+                        <mat-option>-- None --</mat-option>
+                        <mat-option value="simple cakes">Simple cakes</mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <button mat-icon-button matTooltip="Add New Sub-Category">
+                    <mat-icon>add</mat-icon>
+                </button>
+
+                <mat-form-field appearance="outline">
+                    <mat-label>Minimum Order Quantity</mat-label>
+                    <input matInput type="number" placeholder="Ex. 0.5/1" id="moq" ngModel #moq="ngModel" name="moq"
+                        required>
+                    <mat-error *ngIf="moq.hasError('required')">Please enter Minimum Order Quantity</mat-error>
+                </mat-form-field>
+
+                <mat-form-field appearance="outline">
+                    <mat-label>Quantity Unit</mat-label>
+                    <input matInput placeholder="Ex. kg" id="qunit" ngModel #qunit="ngModel" name="qunit" required>
+                    <mat-error *ngIf="qunit.hasError('required')">Please enter Unit</mat-error>
+                </mat-form-field>
+
+                <mat-form-field appearance="outline">
+                    <mat-label>Price per Minimum Order Quantity</mat-label>
+                    <input matInput type="number" id="price" ngModel #price="ngModel" name="price" required>
+                    <mat-error *ngIf="price.hasError('required')">Please enter Price</mat-error>
+                </mat-form-field>
+
+                <mat-form-field appearance="outline">
+                    <mat-label>Currency</mat-label>
+                    <input matInput placeholder="Ex. INR" id="currency" ngModel #currency="ngModel" name="currency"
+                        required>
+                    <mat-error *ngIf="currency.hasError('required')">Please enter currency</mat-error>
+                </mat-form-field>
+
+                <mat-form-field appearance="outline">
+                    <mat-label>Preparation Time</mat-label>
+                    <input matInput type="number" placeholder="Ex. 1" id="ptime" ngModel #ptime="ngModel" name="ptime"
+                        required>
+                    <mat-error *ngIf="ptime.hasError('required')">Please enter Preparation Time</mat-error>
+                    <span matSuffix>Hours</span>
+                </mat-form-field>
+
+                <mat-form-field appearance="outline">
+                    <mat-label>Available In Stock</mat-label>
+                    <input matInput type="number" placeholder="Ex. 1" id="available" ngModel #available="ngModel"
+                        name="available">
+                </mat-form-field>
+
+                <mat-form-field appearance="outline">
+                    <mat-label>Customization</mat-label>
+                    <mat-select ngModel #customize="ngModel" name="customize" value="">
+                        <mat-option value="yes">Yes</mat-option>
+                        <mat-option value="no">No</mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+                <mat-form-field appearance="outline">
+                    <mat-label>Product Description</mat-label>
+                    <textarea required matInput placeholder="Ex. Made with good quality Choclate..." id="description"
+                        ngModel #description="ngModel" name="description"></textarea>
+                    <mat-error *ngIf="description.hasError('required')">Please enter Description</mat-error>
+                </mat-form-field>
+
+                <mat-form-field appearance="outline">
+                    <mat-label>Promocodes</mat-label>
+                    <input matInput placeholder="Ex. FIRST100 Multiple can be entered seperated by comma(,) " id="promo"
+                        ngModel #promo="ngModel" name="promo">
+                </mat-form-field>
+                <p>
+                    <button type="submit" mat-raised-button color="primary" [disabled]='newProduct.invalid'>Add
+                        Product</button>
+                    <button type="submit" mat-raised-button color="primary">Cancel</button>
+                </p>
+            </form>
+
+            <label> Images: </label>
+            <input type="file" id="imageurl" required ngModel #imageurl="ngModel" name="imageurl" multiple="multiple"
+                (change)="upload($event)">
+            <mat-error *ngIf="imageurl.hasError('required')">Choose atleast one image</mat-error>
+        </mat-card>
+    </div>
+    <app-footer></app-footer>
+</app-layout>

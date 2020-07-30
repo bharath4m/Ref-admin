@@ -1,0 +1,21 @@
+<mat-toolbar class="header mat-elevation-z3">
+
+  <div class="header__title">
+    <button class="header__title-button" mat-mini-fab (click)="openMenu()">
+      <mat-icon *ngIf="!isMenuOpened" class="header__title-button-icon">menu_open</mat-icon>
+      <mat-icon *ngIf="isMenuOpened" class="header__title-button-icon">menu</mat-icon>
+    </button>
+    <!-- <mat-divider vertical style="padding: 2%;"></mat-divider> -->
+    <h5 class="header__title-text">The Sugar Heaven</h5 >
+  </div>
+
+  <div class="header-toolbar">
+    <app-search></app-search>
+    <!-- <mat-divider vertical style="padding: 2%;"></mat-divider> -->
+    <app-notifications></app-notifications>
+    <!-- <mat-divider vertical style="padding: 2%;"></mat-divider> -->
+    <app-email [emails]="emails$ | async"></app-email>
+    <!-- <mat-divider vertical style="padding: 2%;"></mat-divider> -->
+    <app-user [user]="user$ | async" (signOut)="signOut()"></app-user>
+  </div>
+</mat-toolbar>
